@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
-
 import './style.css'
 
 class Header extends Component {
-	inputChangeHandler(event) {
-		console.log(event.target.value)
+	state = {
+		keywords: ''
+	}
+	inputChangeHandler = (event) => {
+		this.setState({
+			keywords: event.target.value
+		})
 	}
 
+	// can do what you want between render and return, because just a method, can do a console log to see state
 	render() {
+		console.log(this.state)
 		return (
 			<>
 				<header onClick={() => console.log('I was clicked')}>
@@ -18,13 +24,9 @@ class Header extends Component {
 		)
 	}
 }
-
 export default Header
 
 /*
 Google font Anton
-
 event, fire fn when clicked
-
-2 ways of doing events, one can be reused but more code.
 */
