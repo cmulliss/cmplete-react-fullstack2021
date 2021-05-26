@@ -1,13 +1,12 @@
 import React from 'react'
 
+// pass via props the item, from the db
 const NewsListItem = (props) => {
 	return (
-		<ul key={props.item.id}>
-			<li>
-				<h3>{props.item.title} </h3>
-				<div>{props.item.feed}</div>
-			</li>
-		</ul>
+		<>
+			<h3>{props.item.title} </h3>
+			<div>{props.item.feed}</div>
+		</>
 	)
 }
 
