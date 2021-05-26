@@ -1,22 +1,13 @@
 import React from 'react'
+import NewsListItem from './NewsListItem'
 
 const NewsList = (props) => {
-	console.log(props.news)
+	const news = props.news.map((item) => <NewsListItem item={item} />)
 
-	return (
-		<>
-			<p>
-				{props.news.map((item) => (
-					<ul>
-						<li>
-							<h3>{item.title} </h3>
-							<div>{item.feed}</div>
-						</li>
-					</ul>
-				))}
-			</p>
-		</>
-	)
+	return <>{news}</>
 }
 
 export default NewsList
+
+// map needs a callback fn
+//but map using (), not {}, or will break, because we don't want to return anything.

@@ -6,6 +6,7 @@ import NewsList from './NewsList'
 
 import JSON from '../db.json'
 
+//pass state down to NewsList component below, we do this via props
 class App extends Component {
 	state = {
 		news: JSON
