@@ -2,9 +2,14 @@ import React from 'react'
 import NewsListItem from './NewsListItem'
 
 const NewsList = (props) => {
-	const news = props.news.map((item) => <NewsListItem item={item} />)
+	const news = props.news.map((item) => <NewsListItem item={item} key={item.id} />)
 
-	return <ul>{news}</ul>
+	return (
+		<ul>
+			{news}
+			{props.children}
+		</ul>
+	)
 }
 
 export default NewsList

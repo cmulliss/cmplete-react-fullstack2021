@@ -1,32 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './style.css'
 
-class Header extends Component {
-	state = {
-		keywords: ''
-	}
-	inputChangeHandler = (event) => {
-		this.setState({
-			keywords: event.target.value
-		})
-	}
-
-	// can do what you want between render and return, because just a method, can do a console log to see state
-	render() {
-		console.log(this.state)
-		return (
-			<>
-				<header onClick={() => console.log('I was clicked')}>
-					<div className='logo'>Logo</div>
-					<input onChange={this.inputChangeHandler} />
-				</header>
-			</>
-		)
-	}
+const Header = (props) => {
+	return (
+		<>
+			<header>
+				<div className='logo'>Logo</div>
+				<input onChange={props.keywords} />
+			</header>
+		</>
+	)
 }
+
 export default Header
 
 /*
 Google font Anton
 event, fire fn when clicked
-*/
+
+we can trigger the keywords fn from within the child, the above onchange has the event, and it's passing the event into App.js
+
+ <header style={{ background: `${this.state.active ? 'red' : 'blue'}` }} 
+ 
+ 
+ */
