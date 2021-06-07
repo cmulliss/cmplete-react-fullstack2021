@@ -5,7 +5,9 @@ import App from './components/App'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<App initialCount={10} />
 	</React.StrictMode>,
 	document.getElementById('root')
+
+	// props on App
 )
