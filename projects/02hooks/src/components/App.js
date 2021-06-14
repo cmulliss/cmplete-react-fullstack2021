@@ -1,36 +1,21 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 
-import Title from './Title'
-import Count from './Count'
-import CountBtn from './CountBtn'
-import Age from './Age'
-import AgeBtn from './AgeBtn'
+import User from './User'
+import { MyProvider } from '../context'
 
 const App = () => {
-	const [count, setCount] = useState(0)
-	const [age, setAge] = useState(10)
-
-	// a fn to increment count
-	// each time these 2 fns are called seen as diferent fns, in each case, so rerender, memo can't tell that they are the same fns, , in memory the fns are different on each rerender, need to use useCallback. UseCallback needs to listen for some properties, is called dependency. Can use prvious too. Even better as only rerendered once each time as we are not listening for a dependency }, [count]) or }, [age])
-	const incrementCount = useCallback(() => {
-		setCount((prevCount) => prevCount + 1)
-	}, [])
-
-	const incrementAge = useCallback(() => {
-		setAge((prevAge) => prevAge + 1)
-	}, [])
-
 	return (
-		<>
-			<Title />
-			<Count count={count} />
-			<CountBtn handleCount={incrementCount} />
-			<hr />
-			<Age age={age} />
-			<AgeBtn handleAge={incrementAge} />
-		</>
+		<div>
+			<h1>Hello</h1>
+			<MyProvider>
+				<User />
+			</MyProvider>
+		</div>
 	)
 }
+
 export default App
-// handleCount is prop for <CountBtn />, same process for <Age/>
-// Age and Count not calling a fn, so not rendering each time when using memo
+
+// passing this info to 2nd child, User, via props, but passing props all ove the place, difficult and inefficent. Solution is useContext, to create a centralised place to access the data.
+// The main goal is to access the data that we have on the context, from within the user item.
+// We just create a context in a centralised place, and connect to it.
