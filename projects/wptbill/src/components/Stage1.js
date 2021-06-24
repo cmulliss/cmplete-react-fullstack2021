@@ -6,7 +6,6 @@ import { MyContext } from '../context'
 const Stage1 = () => {
 	const textInput = useRef()
 	const context = useContext(MyContext)
-	// if changes to true show error message
 	const [error, setError] = useState([false, ''])
 
 	const handleSubmit = (e) => {
@@ -15,11 +14,9 @@ const Stage1 = () => {
 		const validate = validateInput(value)
 
 		if (validate) {
-			// form is valid, add player
+			// form is valid...add player
 			setError([false, ''])
 			context.addPlayer(value)
-
-			// reset
 			textInput.current.value = ''
 		}
 	}
@@ -37,21 +34,21 @@ const Stage1 = () => {
 	}
 
 	console.log(context)
+
 	return (
-		<div>
+		<>
 			<Form onSubmit={handleSubmit} className='mt-4'>
 				<Form.Group>
 					<Form.Control type='text' placeholder='Add player name' name='player' ref={textInput} />
 				</Form.Group>
+
 				{error[0] ? <Alert variant='danger'>{error[1]}</Alert> : null}
 
 				<Button className='miami' variant='primary' type='submit'>
-					Add Player
+					Add player
 				</Button>
-				{/* show the list of players */}
-
 				{context.state.players && context.state.players.length > 0 ? (
-					<div>
+					<>
 						<hr />
 						<div>
 							<ul className='list-group'>
@@ -64,16 +61,15 @@ const Stage1 = () => {
 									</li>
 								))}
 							</ul>
-                            
+							<div className='action_button' onClick={() => context.next()}>
+								NEXT
+							</div>
 						</div>
-					</div>
+					</>
 				) : null}
 			</Form>
-		</div>
+		</>
 	)
 }
 
 export default Stage1
-
-// access form input by using refs
-// going to set errors on state

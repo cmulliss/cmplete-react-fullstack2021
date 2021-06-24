@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { MyContext } from '../context'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import './App.css'
 import Stage1 from './Stage1'

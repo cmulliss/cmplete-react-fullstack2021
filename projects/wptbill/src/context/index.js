@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 const MyContext = React.createContext()
 
@@ -8,34 +9,76 @@ class MyProvider extends Component {
 		players: [],
 		result: ''
 	}
-	// every time you call addPlayerHandler from other components will trigger this fn and update state.
+
 	addPlayerHandler = (name) => {
 		this.setState((prevState) => ({
 			players: [...prevState.players, name]
 		}))
 	}
-	// call this fn from the other component, stage1
+
 	removePlayerHandler = (idx) => {
 		let newArray = this.state.players
 		newArray.splice(idx, 1)
 		this.setState({ players: newArray })
 	}
 
+	nextHandler = () => {
+		const { players } = this.state
+
+		if (players.length < 2) {
+			console.log('error')
+			toast.error('You need more than one player', {
+				position: toast.POSITION.TOP_LEFT,
+				autoClose: 2000
+			})
+		} else {
+			this.setState(
+				{
+					stage: 2
+				},
+				() => {
+					setTimeout(() => {
+						this.generateLoser()
+					}, 2000)
+				}
+			)
+		}
+	}
+
+	generateLoser = () => {
+		const { players } = this.state
+		this.setState({
+			result: players[Math.floor(Math.random() * players.length)]
+		})
+	}
+
+	resetGame = () => {
+		this.setState({
+			stage: 1,
+			players: [],
+			result: ''
+		})
+	}
+
 	render() {
 		return (
-			<MyContext.Provider
-				value={{
-					state: this.state,
-					addPlayer: this.addPlayerHandler,
-					removePlayer: this.removePlayerHandler
-				}}
-			>
-				{this.props.children}
-			</MyContext.Provider>
+			<>
+				<MyContext.Provider
+					value={{
+						state: this.state,
+						addPlayer: this.addPlayerHandler,
+						removePlayer: this.removePlayerHandler,
+						next: this.nextHandler,
+						getNewLoser: this.generateLoser,
+						resetGame: this.resetGame
+					}}
+				>
+					{this.props.children}
+				</MyContext.Provider>
+				<ToastContainer />
+			</>
 		)
 	}
 }
 
 export { MyContext, MyProvider }
-// Provider needs a value, passing just state for now.
-// need to add all the fns
