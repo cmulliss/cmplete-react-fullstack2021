@@ -15,8 +15,16 @@ const Header = () => {
 						PureComp
 					</NavLink>{' '}
 					-
-					<NavLink className='p-2' to='/adjacentcomp'>
-						AdjacentComp
+					<NavLink className='p-2' to='/adjel'>
+						Adjel
+					</NavLink>{' '}
+					-
+					<NavLink className='p-2' to='/profile'>
+						Profile
+					</NavLink>{' '}
+					-
+					<NavLink className='p-2' to='/user'>
+						User
 					</NavLink>{' '}
 					-
 				</nav>
