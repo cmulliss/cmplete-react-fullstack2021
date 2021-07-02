@@ -1,10 +1,19 @@
-import './App.css'
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-function App() {
+import Header from './Header'
+import Home from './Home'
+
+const App = () => {
 	return (
-		<div>
-			<h1>Redux</h1>
-		</div>
+		<BrowserRouter>
+			<Header />
+			<div className='container'>
+				<Switch>
+					<Route path='/' component={Home} exact></Route>
+				</Switch>
+			</div>
+		</BrowserRouter>
 	)
 }
 
