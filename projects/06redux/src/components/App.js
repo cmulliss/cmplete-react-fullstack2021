@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Header from './Header'
 import Home from './Home'
+import Movie from './Movie'
 
 const App = () => {
 	return (
@@ -10,7 +11,8 @@ const App = () => {
 			<Header />
 			<div className='container'>
 				<Switch>
-					<Route path='/' component={Home} exact></Route>
+					<Route path='/movie' component={Movie} />
+					<Route path='/' component={Home} exact />
 				</Switch>
 			</div>
 		</BrowserRouter>
